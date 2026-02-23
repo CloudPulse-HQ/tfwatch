@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - tfwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <img src="assets/images/logo.png" alt="tfwatch" height="36" class="brand-logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon"></span>
+            </button>
+            <div class="nav-menu">
+                <a href="features.html" class="nav-item">Features</a>
+                <a href="getting-started.html" class="nav-item">Install</a>
+                <a href="docs.html" class="nav-item">Docs</a>
+                <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="nav-item nav-cta">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Features</h2>
+                <p class="section-description">Everything you need for Terraform dependency visibility</p>
+            </div>
+
+            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr); gap: 32px;">
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">🔍</span>
+                    <h3>Backend Auto-Detection</h3>
+                    <p>tfwatch reads your <code>*.tf</code> files and automatically detects whether you're using Terraform Cloud (<code>cloud {}</code> block) or S3 (<code>backend "s3" {}</code> block). Organization, workspace, bucket, and key are all extracted automatically.</p>
+                    <p style="margin-top: 12px;">No <code>--workspace</code> or <code>--backend</code> flags needed.</p>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">📦</span>
+                    <h3>Module Tracking</h3>
+                    <p>Reads <code>.terraform/modules/modules.json</code> (created by <code>terraform init</code>) to extract every module with its source and version. If init hasn't been run, tfwatch runs it automatically.</p>
+                    <p style="margin-top: 12px;">See which repos use which module versions at a glance.</p>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">🔌</span>
+                    <h3>Provider Tracking</h3>
+                    <p>Parses <code>.terraform.lock.hcl</code> using the HCL parser to extract every provider with its registry source and pinned version.</p>
+                    <p style="margin-top: 12px;">Spot provider version drift across dozens of repos.</p>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">📊</span>
+                    <h3>OpenTelemetry Native</h3>
+                    <p>Publishes a single gauge metric (<code>terraform_dependency_version</code>) via OTEL gRPC. All version information lives in labels for flexible querying.</p>
+                    <p style="margin-top: 12px;">Works with any OTEL-compatible backend: Prometheus, Datadog, Grafana Cloud, New Relic, and more.</p>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">📈</span>
+                    <h3>Pre-Built Dashboard</h3>
+                    <p>Ships with a Grafana dashboard auto-provisioned via Docker Compose. Includes:</p>
+                    <ul style="margin-top: 8px; padding-left: 20px;">
+                        <li><strong>Stats &amp; Charts</strong> — repo/dependency/provider/module counts, backend type donut</li>
+                        <li><strong>Searchable Tables</strong> — all dependencies, providers across repos, modules across repos</li>
+                        <li><strong>Filter Bar</strong> — filter by TF version, backend type, org, workspace, phase, dependency type</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 32px;">
+                    <span class="feature-icon" style="font-size: 32px;">⚡</span>
+                    <h3>Zero Config & CI/CD Ready</h3>
+                    <p>Just point it at a directory. Backend detection, <code>terraform init</code>, and metric publishing all happen automatically. Single static binary with no runtime dependencies.</p>
+                    <p style="margin-top: 12px;">Use <code>--phase apply</code> in your pipeline to tag metrics by deployment stage.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 64px;">
+                <div class="section-header">
+                    <h2 class="section-title">How It Works</h2>
+                </div>
+                <p align="center">
+                    <img src="assets/images/flow.svg" alt="tfwatch flow" style="max-width: 100%; width: 800px;">
+                </p>
+                <div style="margin-top: 32px;">
+                    <ol style="padding-left: 20px; color: var(--color-text-secondary); line-height: 2;">
+                        <li><strong>Scan</strong> — Reads all <code>*.tf</code> files and <code>.terraform.lock.hcl</code> in the target directory</li>
+                        <li><strong>Detect</strong> — Identifies the backend type (Terraform Cloud or S3) and extracts org/workspace/bucket/key</li>
+                        <li><strong>Parse</strong> — Extracts module versions from <code>modules.json</code> and provider versions from the lock file</li>
+                        <li><strong>Publish</strong> — Sends <code>terraform_dependency_version</code> gauge metrics via OTEL gRPC to your collector</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div style="margin-top: 64px;">
+                <div class="section-header">
+                    <h2 class="section-title">Unified Metric Format</h2>
+                    <p class="section-description">One metric, rich labels, flexible queries</p>
+                </div>
+                <p style="color: var(--color-text-secondary); margin-bottom: 16px;">All dependencies (modules and providers) emit the same metric with the same label keys. The <code>type</code> label distinguishes them.</p>
+                <pre><code>terraform_dependency_version{
+  backend_type="s3",
+  backend_org="acme-terraform-state",
+  backend_workspace="prod_vpc_terraform_tfstate",
+  phase="apply",
+  type="module",
+  dependency_name="vpc",
+  dependency_source="terraform-aws-modules/vpc/aws",
+  dependency_version="5.1.2",
+  terraform_version="1.9.8"
+} 1</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>tfwatch &copy; 2025 CloudPulse-HQ &bull; MIT License</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        themeToggle.textContent = saved === 'dark' ? '☀️' : '🌙';
+        themeToggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

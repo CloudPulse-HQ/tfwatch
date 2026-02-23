@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - tfwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <img src="assets/images/logo.png" alt="tfwatch" height="36" class="brand-logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon"></span>
+            </button>
+            <div class="nav-menu">
+                <a href="features.html" class="nav-item">Features</a>
+                <a href="getting-started.html" class="nav-item">Install</a>
+                <a href="docs.html" class="nav-item">Docs</a>
+                <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="nav-item nav-cta">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Documentation</h2>
+            </div>
+
+            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <div class="feature-card" style="text-align: left; padding: 28px;">
+                    <h3>CLI Reference</h3>
+                    <table style="width: 100%; margin-top: 12px; font-size: 14px; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 8px 0;"><code>--dir</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);">Terraform directory (default: <code>.</code>)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 8px 0;"><code>--phase</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);"><code>plan</code> or <code>apply</code> (default: <code>plan</code>)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 8px 0;"><code>--otel-endpoint</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);">OTEL gRPC endpoint (default: <code>localhost:4317</code>)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 8px 0;"><code>--otel-insecure</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);">Disable TLS (default: <code>true</code>)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 8px 0;"><code>--list</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);">Print deps without publishing metrics</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 0;"><code>--version</code></td>
+                            <td style="padding: 8px 0; color: var(--color-text-secondary);">Print version and exit</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 28px;">
+                    <h3>Metric Labels</h3>
+                    <table style="width: 100%; margin-top: 12px; font-size: 14px; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>backend_type</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);"><code>workspace</code> or <code>s3</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>backend_org</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">Organization or S3 bucket</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>backend_workspace</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">Workspace or S3 key</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>phase</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);"><code>plan</code> or <code>apply</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>type</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);"><code>module</code> or <code>provider</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>dependency_name</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">e.g. <code>vpc</code>, <code>aws</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>dependency_source</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">Registry source path</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: 6px 0;"><code>dependency_version</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">Semver string</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px 0;"><code>terraform_version</code></td>
+                            <td style="padding: 6px 0; color: var(--color-text-secondary);">CLI version</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 28px;">
+                    <h3>Backends</h3>
+                    <p style="margin-top: 8px;"><strong>Terraform Cloud / Enterprise</strong></p>
+                    <p style="color: var(--color-text-secondary); font-size: 14px;">Detected from <code>cloud {}</code> block. Extracts <code>organization</code> and <code>workspaces.name</code>.</p>
+                    <pre style="margin-top: 12px;"><code>terraform {
+  cloud {
+    organization = "acme-corp"
+    workspaces { name = "production" }
+  }
+}</code></pre>
+
+                    <p style="margin-top: 20px;"><strong>S3</strong></p>
+                    <p style="color: var(--color-text-secondary); font-size: 14px;">Detected from <code>backend "s3" {}</code> block. Extracts <code>bucket</code> and <code>key</code> (normalized).</p>
+                    <pre style="margin-top: 12px;"><code>terraform {
+  backend "s3" {
+    bucket = "my-state"
+    key    = "prod/vpc/terraform.tfstate"
+  }
+}</code></pre>
+                </div>
+
+                <div class="feature-card" style="text-align: left; padding: 28px;">
+                    <h3>Real-World Queries</h3>
+                    <p style="color: var(--color-text-secondary); margin-top: 8px; font-size: 14px;">Find vulnerable modules, deprecated providers, and version drift across all repos:</p>
+                    <pre style="margin-top: 12px;"><code># Find repos using a vulnerable module
+terraform_dependency_version{
+  type="module",
+  dependency_name="vpc",
+  dependency_version="5.0.0"
+}
+
+# Find repos on deprecated AWS provider
+terraform_dependency_version{
+  type="provider",
+  dependency_name="aws",
+  dependency_version!~"6.*"
+}
+
+# Audit production dependencies
+terraform_dependency_version{
+  phase="apply",
+  backend_workspace=~".*prod.*"
+}
+
+# Which repos use a specific module?
+terraform_dependency_version{
+  type="module",
+  dependency_name="eks"
+}
+
+# All unique provider versions in use
+count by (dependency_name,
+  dependency_version) (
+  terraform_dependency_version{
+    type="provider"
+  }
+)</code></pre>
+                    <p style="color: var(--color-text-secondary); margin-top: 12px; font-size: 13px;">All queries also work as Grafana dashboard filters — use the built-in filter bar to search without writing PromQL.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 48px;">
+                <h3>Guides</h3>
+                <ul style="padding-left: 20px; line-height: 2;">
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/docs/deployment.md">Deployment</a> — Local stack setup, cloud provider endpoints, CI/CD integration</li>
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/docs/testing.md">Testing</a> — Using example repos, generating sample data, verifying in Grafana</li>
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/docs/metrics.md">Metrics</a> — Metric format, all labels, PromQL use cases</li>
+                </ul>
+
+                <h3 style="margin-top: 24px;">Further Reading</h3>
+                <ul style="padding-left: 20px; line-height: 2;">
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/DESIGN.md">DESIGN.md</a> — Architecture, backend detection, metric format decisions</li>
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> — Development setup, testing, PR guidelines</li>
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/CHANGELOG.md">CHANGELOG.md</a> — Version history</li>
+                    <li><a href="https://github.com/CloudPulse-HQ/tfwatch/tree/main/examples">examples/</a> — 10 sample Terraform repos for testing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>tfwatch &copy; 2025 CloudPulse-HQ &bull; MIT License</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        themeToggle.textContent = saved === 'dark' ? '☀️' : '🌙';
+        themeToggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

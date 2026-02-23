@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tfwatch - Track Terraform Dependencies Across All Your Repos</title>
+    <meta name="description" content="Scan Terraform configs, auto-detect backends, and publish module/provider versions as OpenTelemetry metrics. Visualize drift in Grafana, Datadog, or any OTEL backend.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <img src="assets/images/logo.png" alt="tfwatch" height="36" class="brand-logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon"></span>
+            </button>
+            <div class="nav-menu">
+                <a href="features.html" class="nav-item">Features</a>
+                <a href="getting-started.html" class="nav-item">Install</a>
+                <a href="docs.html" class="nav-item">Docs</a>
+                <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="nav-item nav-cta">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-badges">
+                <span class="hero-badge">Go CLI</span>
+                <span class="hero-badge">OpenTelemetry</span>
+                <span class="hero-badge">MIT License</span>
+            </div>
+            <h1 class="hero-title">
+                Track Terraform Dependencies <span class="hero-gradient">Across All Your Repos</span>
+            </h1>
+            <p class="hero-subtitle">
+                One command scans your Terraform configs, auto-detects backends, and publishes module and provider versions as metrics. Spot version drift before it becomes a problem.
+            </p>
+            <div class="hero-actions">
+                <a href="getting-started.html" class="btn btn-primary">Get Started</a>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="btn btn-outline">View on GitHub</a>
+            </div>
+            <div class="command-box">
+                <code>go install github.com/CloudPulse-HQ/tfwatch@latest</code>
+                <button class="copy-btn" aria-label="Copy" onclick="navigator.clipboard.writeText('go install github.com/CloudPulse-HQ/tfwatch@latest')">📋</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section id="features" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why tfwatch?</h2>
+                <p class="section-description">Terraform dependency visibility that scales with your infrastructure</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Auto-Detection</h3>
+                    <p>Automatically reads your .tf files to detect Terraform Cloud or S3 backends. No manual flags needed.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>OpenTelemetry Native</h3>
+                    <p>Publishes metrics via OTEL gRPC. Works with any OTEL-compatible backend out of the box.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Grafana Dashboards</h3>
+                    <p>Ships with two pre-built dashboards — executive overview and dependency explorer. Auto-provisioned.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏗️</span>
+                    <h3>Module Tracking</h3>
+                    <p>Tracks every Terraform module version across all repos. See which repos are behind at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔌</span>
+                    <h3>Provider Tracking</h3>
+                    <p>Monitors provider versions (AWS, GCP, Azure, etc.) across your entire fleet.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Zero Config</h3>
+                    <p>Just point it at a directory and run. Backend detection, terraform init, and metric publishing happen automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboards" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Pre-Built Dashboard</h2>
+                <p class="section-description">A Grafana dashboard ships with tfwatch, auto-provisioned via Docker Compose</p>
+            </div>
+            <div class="dashboard-card" style="max-width: 900px; margin: 0 auto;">
+                <div class="dashboard-screenshot">
+                    <!-- Replace with: <img src="assets/screenshots/dashboard.png" alt="tfwatch Dashboard"> -->
+                    Screenshot: tfwatch Dashboard
+                </div>
+                <div class="dashboard-info">
+                    <h3>Terraform Dependency Tracker</h3>
+                    <p>Stats row with repo/dependency/provider/module counts, backend type donut chart, and three searchable tables — all dependencies, providers across repos, and modules across repos. Filter by Terraform version, backend type, org, workspace, phase, and dependency type.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quickstart" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Get Started in 60 Seconds</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Install</h3>
+                        <p>Install via Go or build from source.</p>
+                        <pre><code>go install github.com/CloudPulse-HQ/tfwatch@latest</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Start the observability stack</h3>
+                        <p>Spins up OTEL Collector, Prometheus, and Grafana with dashboards pre-loaded.</p>
+                        <pre><code>docker compose -f deploy/docker-compose.yml up -d</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Run tfwatch</h3>
+                        <p>Point it at any Terraform directory. Backend is auto-detected.</p>
+                        <pre><code>tfwatch --dir ./your-terraform-repo</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>View in Grafana</h3>
+                        <p>Open <a href="http://localhost:3000">localhost:3000</a> — both dashboards are automatically available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Output Preview -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">What It Looks Like</h2>
+            </div>
+            <pre><code>tfwatch v1.0.0 — Terraform Dependency Tracker
+
+Directory:         ./infra/prod
+Phase:             apply
+Backend Type:      s3
+S3 Bucket:         acme-terraform-state
+S3 Key:            prod_vpc_terraform_tfstate
+Terraform Version: 1.9.8
+OTEL Endpoint:     localhost:4317
+
+Found 3 module(s)
+Found 2 provider(s)
+
+  module: vpc v5.1.2
+  module: eks v20.5.0
+  module: rds v6.10.0
+  provider: aws v5.82.2
+  provider: kubernetes v2.35.1
+
+Done. Metrics published to localhost:4317</code></pre>
+        </div>
+    </section>
+
+    <!-- Observability Providers -->
+    <section id="providers" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Works With Your Stack</h2>
+                <p class="section-description">Send metrics to any OTEL-compatible backend</p>
+            </div>
+            <div class="providers-grid">
+                <div class="provider-card">
+                    <h4>Local Stack</h4>
+                    <code>localhost:4317</code>
+                </div>
+                <div class="provider-card">
+                    <h4>Datadog</h4>
+                    <code>api.datadoghq.com:4317</code>
+                </div>
+                <div class="provider-card">
+                    <h4>Grafana Cloud</h4>
+                    <code>otlp-gateway-*.grafana.net:4317</code>
+                </div>
+                <div class="provider-card">
+                    <h4>New Relic</h4>
+                    <code>otlp.nr-data.net:4317</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="hero" style="padding: 60px 24px;">
+        <div class="hero-container">
+            <h2 class="hero-title" style="font-size: 32px;">Ready to track your Terraform dependencies?</h2>
+            <div class="hero-actions" style="margin-top: 24px;">
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="btn btn-primary">View on GitHub</a>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/CONTRIBUTING.md" class="btn btn-outline">Contribute</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="footer-heading">Product</h4>
+                    <a href="features.html" class="footer-link">Features</a>
+                    <a href="getting-started.html" class="footer-link">Getting Started</a>
+                    <a href="docs.html" class="footer-link">Documentation</a>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Resources</h4>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch" class="footer-link">GitHub</a>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/DESIGN.md" class="footer-link">Architecture</a>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch/tree/main/examples" class="footer-link">Examples</a>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Community</h4>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch/issues" class="footer-link">Issues</a>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/CONTRIBUTING.md" class="footer-link">Contributing</a>
+                    <a href="https://github.com/CloudPulse-HQ/tfwatch/blob/main/LICENSE" class="footer-link">License</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>tfwatch &copy; 2025 CloudPulse-HQ &bull; MIT License</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        themeToggle.textContent = saved === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: otel-collector
+    honor_labels: true
+    static_configs:
+      - targets: ["otel-collector:8889"]
+    metric_relabel_configs:
+      - regex: "instance|job|otel_scope_name|otel_scope_schema_url|otel_scope_version"
+        action: labeldrop

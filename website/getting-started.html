@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - tfwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <img src="assets/images/logo.png" alt="tfwatch" height="36" class="brand-logo">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon"></span>
+            </button>
+            <div class="nav-menu">
+                <a href="features.html" class="nav-item">Features</a>
+                <a href="getting-started.html" class="nav-item">Install</a>
+                <a href="docs.html" class="nav-item">Docs</a>
+                <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="nav-item nav-cta">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Getting Started</h2>
+                <p class="section-description">Get tfwatch running in under a minute</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Install tfwatch</h3>
+                        <p>Install via Go:</p>
+                        <pre><code>go install github.com/CloudPulse-HQ/tfwatch@latest</code></pre>
+                        <p style="margin-top: 16px;">Or build from source:</p>
+                        <pre><code>git clone https://github.com/CloudPulse-HQ/tfwatch.git
+cd tfwatch
+make build</code></pre>
+                        <p style="margin-top: 16px;">Or download a pre-built binary from <a href="https://github.com/CloudPulse-HQ/tfwatch/releases">GitHub Releases</a>.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Start the observability stack</h3>
+                        <p>The included Docker Compose file starts an OTEL Collector, Prometheus, and Grafana with both dashboards pre-loaded.</p>
+                        <pre><code>docker compose -f deploy/docker-compose.yml up -d</code></pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Run tfwatch</h3>
+                        <p>Point it at any Terraform directory. The backend is auto-detected from your <code>.tf</code> files.</p>
+                        <pre><code># Run in the current directory
+tfwatch
+
+# Or specify a path
+tfwatch --dir ./infra/prod
+
+# List without publishing metrics
+tfwatch --list --dir ./infra/prod
+
+# Tag with pipeline phase
+tfwatch --dir ./infra/prod --phase apply</code></pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>View in Grafana</h3>
+                        <p>Open <a href="http://localhost:3000">http://localhost:3000</a>. The dashboard is auto-provisioned with:</p>
+                        <ul style="margin-top: 8px; padding-left: 20px; color: var(--color-text-secondary);">
+                            <li><strong>Stats &amp; Charts</strong> — repo/dependency/provider/module counts, backend type donut</li>
+                            <li><strong>Searchable Tables</strong> — all dependencies, providers, and modules across repos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 48px;">
+                <h3>CI/CD Integration</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 16px;">Run tfwatch in your pipeline to track dependencies on every deploy:</p>
+                <pre><code># GitHub Actions example
+- name: Track dependencies
+  run: |
+    go install github.com/CloudPulse-HQ/tfwatch@latest
+    tfwatch --dir ./infra --phase apply \
+      --otel-endpoint ${{ secrets.OTEL_ENDPOINT }} \
+      --otel-insecure=false</code></pre>
+            </div>
+
+            <div style="margin-top: 48px;">
+                <h3>Sending to Cloud Providers</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 16px;">tfwatch works with any OTEL-compatible backend:</p>
+                <pre><code># Datadog
+tfwatch --dir ./infra --otel-endpoint api.datadoghq.com:4317 --otel-insecure=false
+
+# Grafana Cloud
+tfwatch --dir ./infra --otel-endpoint otlp-gateway-prod-us-central-0.grafana.net:4317 --otel-insecure=false
+
+# New Relic
+tfwatch --dir ./infra --otel-endpoint otlp.nr-data.net:4317 --otel-insecure=false</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>tfwatch &copy; 2025 CloudPulse-HQ &bull; MIT License</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        themeToggle.textContent = saved === 'dark' ? '☀️' : '🌙';
+        themeToggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

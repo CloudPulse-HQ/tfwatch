@@ -1,0 +1,780 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "count(count by (backend_org, backend_workspace) (terraform_dependency_version{terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\"}))",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Repos",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "count(terraform_dependency_version{terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\",type=~\"$dependency_type\"})",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Dependencies",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "count(count by (dependency_name) (terraform_dependency_version{type=\"provider\",terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\"}))",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Unique Providers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "count(count by (dependency_name) (terraform_dependency_version{type=\"module\",terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\"}))",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Unique Modules",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "sort": "desc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "count by (backend_type) (count by (backend_type, backend_org, backend_workspace) (terraform_dependency_version{terraform_version=~\"$terraform_version\",phase=~\"$phase\"}))",
+          "instant": true,
+          "legendFormat": "{{backend_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Backend Types",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": [
+                "countAll"
+              ]
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "fixed",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "module": {
+                        "color": "blue",
+                        "text": "module"
+                      },
+                      "provider": {
+                        "color": "purple",
+                        "text": "provider"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Source"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 305
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 10,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Org / Bucket"
+          }
+        ]
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "terraform_dependency_version{terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\",type=~\"$dependency_type\"}",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "All Dependencies by Repo",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true
+            },
+            "indexByName": {
+              "backend_org": 1,
+              "backend_type": 0,
+              "backend_workspace": 2,
+              "dependency_name": 5,
+              "dependency_source": 7,
+              "dependency_version": 6,
+              "phase": 3,
+              "terraform_version": 8,
+              "type": 4
+            },
+            "renameByName": {
+              "backend_org": "Org / Bucket",
+              "backend_type": "Backend",
+              "backend_workspace": "Workspace / Key",
+              "dependency_name": "Dependency",
+              "dependency_source": "Source",
+              "dependency_version": "Version",
+              "phase": "Phase",
+              "terraform_version": "TF Version",
+              "type": "Type"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": [
+                "countAll"
+              ]
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 20,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Provider"
+          }
+        ]
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "terraform_dependency_version{type=\"provider\",terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\"}",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Provider Versions Across Repos",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "dependency_source": true,
+              "phase": true,
+              "type": true
+            },
+            "indexByName": {
+              "backend_org": 1,
+              "backend_type": 0,
+              "backend_workspace": 2,
+              "dependency_name": 3,
+              "dependency_version": 4,
+              "terraform_version": 5
+            },
+            "renameByName": {
+              "backend_org": "Org / Bucket",
+              "backend_type": "Backend",
+              "backend_workspace": "Workspace / Key",
+              "dependency_name": "Provider",
+              "dependency_version": "Version",
+              "terraform_version": "TF Version"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": [
+                "countAll"
+              ]
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 30,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Module"
+          }
+        ]
+      },
+      "pluginVersion": "12.3.3",
+      "targets": [
+        {
+          "expr": "terraform_dependency_version{type=\"module\",terraform_version=~\"$terraform_version\",backend_type=~\"$backend_type\",backend_org=~\"$backend_org\",backend_workspace=~\"$backend_workspace\",phase=~\"$phase\"}",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Module Versions Across Repos",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "phase": true,
+              "type": true
+            },
+            "indexByName": {
+              "backend_org": 1,
+              "backend_type": 0,
+              "backend_workspace": 2,
+              "dependency_name": 3,
+              "dependency_source": 5,
+              "dependency_version": 4,
+              "terraform_version": 6
+            },
+            "renameByName": {
+              "backend_org": "Org / Bucket",
+              "backend_type": "Backend",
+              "backend_workspace": "Workspace / Key",
+              "dependency_name": "Module",
+              "dependency_source": "Source",
+              "dependency_version": "Version",
+              "terraform_version": "TF Version"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 42,
+  "tags": [
+    "terraform",
+    "tfwatch"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "includeAll": true,
+        "multi": true,
+        "name": "terraform_version",
+        "query": "label_values(terraform_dependency_version, terraform_version)",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "includeAll": true,
+        "multi": true,
+        "name": "backend_type",
+        "query": "label_values(terraform_dependency_version, backend_type)",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "includeAll": true,
+        "label": "Org / Bucket",
+        "multi": true,
+        "name": "backend_org",
+        "query": "label_values(terraform_dependency_version{backend_type=~\"$backend_type\"}, backend_org)",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "includeAll": true,
+        "label": "Workspace / Key",
+        "multi": true,
+        "name": "backend_workspace",
+        "query": "label_values(terraform_dependency_version{backend_type=~\"$backend_type\",backend_org=~\"$backend_org\"}, backend_workspace)",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "includeAll": true,
+        "multi": true,
+        "name": "phase",
+        "query": "label_values(terraform_dependency_version, phase)",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "includeAll": true,
+        "multi": true,
+        "name": "dependency_type",
+        "options": [
+          {
+            "selected": false,
+            "text": "module",
+            "value": "module"
+          },
+          {
+            "selected": false,
+            "text": "provider",
+            "value": "provider"
+          }
+        ],
+        "query": "module,provider",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "tfwatch — Terraform Dependency Tracker",
+  "uid": "tfwatch-main",
+  "version": 1
+}
