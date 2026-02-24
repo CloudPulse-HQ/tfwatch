@@ -15,9 +15,10 @@ make test
 
 1. Fork the repo and create a branch from `main`
 2. Make your changes
-3. Run `make test` to verify all tests pass
-4. Run `make build` to verify the binary compiles
-5. Submit a pull request
+3. Run `make lint` to check for lint errors
+4. Run `make test` to verify all tests pass
+5. Run `make build` to verify the binary compiles
+6. Submit a pull request
 
 ## Running locally
 
@@ -39,18 +40,22 @@ View metrics at [http://localhost:3000](http://localhost:3000) (Grafana) or [htt
 
 ```
 .
-├── main.go           # CLI entrypoint and flag parsing
-├── parser.go         # Terraform config parser (backend, modules, providers)
-├── parser_test.go    # Tests
-├── collector.go      # OTEL metric collection and publishing
-├── deploy/           # Docker Compose observability stack
-├── examples/         # Sample Terraform repos for testing
-└── DESIGN.md         # Architecture and design decisions
+├── main.go             # CLI entrypoint and flag parsing
+├── parser.go           # Terraform config parser (backend, modules, providers)
+├── collector.go        # OTEL metric collection and publishing
+├── doc.go              # Package-level godoc
+├── *_test.go           # Tests (table-driven, ~82% coverage)
+├── testdata/           # Static test fixtures (HCL, JSON)
+├── .golangci.yml       # Linter configuration
+├── deploy/             # Docker Compose observability stack
+├── examples/           # Sample Terraform repos for testing
+└── DESIGN.md           # Architecture and design decisions
 ```
 
 ## Code style
 
-- Follow standard Go conventions (`gofmt`, `go vet`)
+- Run `make lint` before submitting — this runs `golangci-lint` (covers `gofmt`, `go vet`, `staticcheck`, and more)
+- Install golangci-lint: `brew install golangci-lint` or see [golangci-lint.run](https://golangci-lint.run/welcome/install/)
 - Keep changes focused — one feature or fix per PR
 - Add tests for new functionality
 

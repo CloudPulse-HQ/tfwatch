@@ -9,6 +9,9 @@
   <a href="https://go.dev/"><img src="https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go&logoColor=white" alt="Go"></a>
   <a href="https://www.terraform.io/"><img src="https://img.shields.io/badge/Terraform-1.0+-844FBA?logo=terraform" alt="Terraform"></a>
   <a href="https://opentelemetry.io/"><img src="https://img.shields.io/badge/OpenTelemetry-metrics-3C5AFF?logo=opentelemetry&logoColor=white" alt="OpenTelemetry"></a>
+  <a href="https://goreportcard.com/report/github.com/CloudPulse-HQ/tfwatch"><img src="https://goreportcard.com/badge/github.com/CloudPulse-HQ/tfwatch" alt="Go Report Card"></a>
+  <a href="https://pkg.go.dev/github.com/CloudPulse-HQ/tfwatch"><img src="https://pkg.go.dev/badge/github.com/CloudPulse-HQ/tfwatch.svg" alt="Go Reference"></a>
+  <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/Built%20with-Claude%20Code-CC785C?logo=anthropic&logoColor=white" alt="Built with Claude Code"></a>
 </p>
 
 <p align="center">
@@ -18,6 +21,8 @@
   <a href="#documentation"><strong>Docs</strong></a> &bull;
   <a href="CONTRIBUTING.md"><strong>Contributing</strong></a>
 </p>
+
+> **Note:** This project was built with [Claude Code](https://claude.ai/code) as an experiment in AI-assisted development.
 
 ---
 

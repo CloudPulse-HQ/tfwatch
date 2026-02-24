@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
   pull_request:
     branches: [main]
 
@@ -24,66 +24,44 @@ jobs:
       - name: Build
         run: go build -v ./...
 
-      - name: Test with coverage
+      - name: Test
         run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
 
-      - name: Check coverage threshold
+      - name: Coverage check
+        id: coverage
         run: |
           COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print $3}' | sed 's/%//')
           echo "Total coverage: ${COVERAGE}%"
           echo "coverage=${COVERAGE}" >> "$GITHUB_OUTPUT"
-          # Fail if coverage drops below 30%
-          if (( $(echo "$COVERAGE < 30" | bc -l) )); then
-            echo "::error::Coverage ${COVERAGE}% is below the 30% threshold"
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "::error::Coverage ${COVERAGE}% is below 80% threshold"
             exit 1
           fi
-        id: coverage
 
-      - name: Generate coverage report
-        if: github.event_name == 'pull_request'
-        run: go tool cover -func=coverage.out > coverage-report.txt
-
-      - name: Comment coverage on PR
+      - name: Coverage report
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const report = fs.readFileSync('coverage-report.txt', 'utf8');
-            const total = report.split('\n').find(l => l.includes('total:'));
-            const body = `### Code Coverage\n\n\`\`\`\n${total.trim()}\n\`\`\`\n\n<details>\n<summary>Full report</summary>\n\n\`\`\`\n${report}\n\`\`\`\n\n</details>`;
-
-            // Find existing coverage comment
+            const report = fs.readFileSync('coverage.out', 'utf8');
+            const { execSync } = require('child_process');
+            const funcReport = execSync('go tool cover -func=coverage.out').toString();
+            const total = funcReport.split('\n').find(l => l.includes('total:'));
+            const body = `### Coverage: ${total.trim().split(/\s+/).pop()}\n<details><summary>Full report</summary>\n\n\`\`\`\n${funcReport}\n\`\`\`\n</details>`;
             const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: context.repo.owner, repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            const existing = comments.find(c => c.body.includes('### Code Coverage'));
-
+            const existing = comments.find(c => c.body.includes('### Coverage:'));
+            const params = { owner: context.repo.owner, repo: context.repo.repo, body };
             if (existing) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existing.id,
-                body,
-              });
+              await github.rest.issues.updateComment({ ...params, comment_id: existing.id });
             } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body,
-              });
+              await github.rest.issues.createComment({ ...params, issue_number: context.issue.number });
             }
 
-      - name: Vet
-        run: go vet ./...
-
-      - name: Check formatting
-        run: |
-          if [ -n "$(gofmt -l .)" ]; then
-            echo "::error::Files not formatted with gofmt:"
-            gofmt -l .
-            exit 1
-          fi
+      - name: Lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest

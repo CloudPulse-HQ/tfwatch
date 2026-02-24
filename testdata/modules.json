@@ -1,0 +1,5 @@
+{"Modules":[
+	{"Key":"","Source":"","Dir":"."},
+	{"Key":"s3_bucket","Source":"registry.terraform.io/terraform-aws-modules/s3-bucket/aws","Version":"5.10.0","Dir":".terraform/modules/s3_bucket"},
+	{"Key":"vpc","Source":"registry.terraform.io/terraform-aws-modules/vpc/aws","Version":"5.1.0","Dir":".terraform/modules/vpc"}
+]}

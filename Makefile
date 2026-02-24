@@ -1,4 +1,4 @@
-.PHONY: build install test clean run list docker-up docker-down publish-examples
+.PHONY: build install test lint ci clean run list docker-up docker-down publish-examples
 
 BINARY_NAME=tfwatch
 VERSION=1.0.0
@@ -15,7 +15,12 @@ install: build
 	@echo "Installed"
 
 test:
-	go test -v ./...
+	go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+
+lint:
+	golangci-lint run ./...
+
+ci: lint test build
 
 run: build
 	./$(BUILD_DIR)/$(BINARY_NAME) --dir ./examples/eks-cluster
