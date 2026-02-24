@@ -12,24 +12,28 @@ import (
 	"go.opentelemetry.io/otel/metric"
 )
 
+// Collector publishes Terraform dependency metrics via OpenTelemetry.
 type Collector struct {
 	config    Config
 	gauge     metric.Int64Gauge
 	tfVersion string
 }
 
+// Module represents a Terraform module dependency.
 type Module struct {
 	Name    string
 	Source  string
 	Version string
 }
 
+// Provider represents a Terraform provider dependency.
 type Provider struct {
 	Name    string
 	Source  string
 	Version string
 }
 
+// NewCollector creates a Collector with an OTEL gauge metric.
 func NewCollector(cfg Config) *Collector {
 	meter := otel.Meter("tfwatch")
 
@@ -50,6 +54,7 @@ func NewCollector(cfg Config) *Collector {
 	}
 }
 
+// Collect parses dependencies and publishes them as OTEL metrics.
 func (c *Collector) Collect(ctx context.Context) error {
 	parser := NewParser(c.config.Directory)
 

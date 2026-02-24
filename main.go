@@ -17,6 +17,7 @@ import (
 
 var version = "dev"
 
+// Config holds CLI flag values for a tfwatch run.
 type Config struct {
 	Directory    string
 	Phase        string // "plan" or "apply"

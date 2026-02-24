@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclparse"
 )
 
+// BackendConfig describes the detected Terraform backend (cloud or s3).
 type BackendConfig struct {
 	Type         string // "workspace" or "s3"
 	Organization string // cloud backend: tf_org
@@ -21,10 +22,12 @@ type BackendConfig struct {
 	Key          string // s3 backend: normalized key (slashes → underscores)
 }
 
+// Parser reads Terraform configuration and generated files from a directory.
 type Parser struct {
 	directory string
 }
 
+// NewParser returns a Parser rooted at the given directory.
 func NewParser(directory string) *Parser {
 	return &Parser{directory: directory}
 }
