@@ -22,7 +22,7 @@ jobs:
               echo "::error::Invalid: '$msg'"
               FAILED=1
             fi
-          done < <(git log origin/main..HEAD --pretty=format:"%s")
+          done < <(git log --no-merges origin/main..HEAD --pretty=format:"%s")
           if [ "$FAILED" -eq 1 ]; then
             echo ""
             echo "Expected: <type>(<scope>): <description>"
