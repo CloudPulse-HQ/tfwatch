@@ -17,6 +17,7 @@ import (
 
 var version = "dev"
 
+// Config holds CLI flag values for a tfwatch run.
 type Config struct {
 	Directory    string
 	Phase        string // "plan" or "apply"
@@ -30,7 +31,9 @@ func main() {
 	printBanner()
 
 	if cfg.ListOnly {
-		listDependencies(cfg)
+		if err := listDependencies(cfg); err != nil {
+			log.Fatal(err)
+		}
 		return
 	}
 
@@ -39,7 +42,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to initialize OTEL: %v", err)
 	}
-	defer shutdown(ctx)
+	defer func() { _ = shutdown(ctx) }()
 
 	collector := NewCollector(cfg)
 	if err := collector.Collect(ctx); err != nil {
@@ -49,12 +52,12 @@ func main() {
 	fmt.Println("\nDone. Metrics published to", cfg.OTELEndpoint)
 }
 
-func listDependencies(cfg Config) {
+func listDependencies(cfg Config) error {
 	parser := NewParser(cfg.Directory)
 
 	backend, err := parser.ParseBackend()
 	if err != nil {
-		log.Fatalf("Failed to detect backend: %v", err)
+		return fmt.Errorf("failed to detect backend: %w", err)
 	}
 
 	fmt.Printf("\nBackend Type:      %s\n", backend.Type)
@@ -68,17 +71,17 @@ func listDependencies(cfg Config) {
 	}
 
 	if err := parser.EnsureInit(); err != nil {
-		log.Fatalf("terraform init failed: %v", err)
+		return fmt.Errorf("terraform init failed: %w", err)
 	}
 
 	modules, err := parser.ParseModules()
 	if err != nil {
-		log.Fatalf("Failed to parse modules: %v", err)
+		return fmt.Errorf("failed to parse modules: %w", err)
 	}
 
 	providers, err := parser.ParseProviders()
 	if err != nil {
-		log.Fatalf("Failed to parse providers: %v", err)
+		return fmt.Errorf("failed to parse providers: %w", err)
 	}
 
 	if len(modules) > 0 {
@@ -98,31 +101,47 @@ func listDependencies(cfg Config) {
 	if len(modules) == 0 && len(providers) == 0 {
 		fmt.Println("\nNo modules or providers found.")
 	}
+
+	return nil
 }
 
 func parseFlags() Config {
-	var cfg Config
+	cfg, exit := parseFlagsFrom(os.Args[1:])
+	if exit >= 0 {
+		os.Exit(exit)
+	}
+	return cfg
+}
 
-	flag.StringVar(&cfg.Directory, "dir", ".", "Terraform configuration directory (default: current directory)")
-	flag.StringVar(&cfg.Phase, "phase", "plan", "Terraform phase: plan or apply")
-	flag.StringVar(&cfg.OTELEndpoint, "otel-endpoint", "localhost:4317", "OTEL collector endpoint")
-	flag.BoolVar(&cfg.OTELInsecure, "otel-insecure", true, "Use insecure gRPC connection")
-	flag.BoolVar(&cfg.ListOnly, "list", false, "List modules and providers without publishing metrics")
-	showVersion := flag.Bool("version", false, "Show version")
-	flag.Parse()
+// parseFlagsFrom parses flags from the given args. Returns (config, exitCode).
+// exitCode < 0 means continue; >= 0 means the caller should exit with that code.
+func parseFlagsFrom(args []string) (Config, int) {
+	var cfg Config
+	fs := flag.NewFlagSet("tfwatch", flag.ContinueOnError)
+
+	fs.StringVar(&cfg.Directory, "dir", ".", "Terraform configuration directory (default: current directory)")
+	fs.StringVar(&cfg.Phase, "phase", "plan", "Terraform phase: plan or apply")
+	fs.StringVar(&cfg.OTELEndpoint, "otel-endpoint", "localhost:4317", "OTEL collector endpoint")
+	fs.BoolVar(&cfg.OTELInsecure, "otel-insecure", true, "Use insecure gRPC connection")
+	fs.BoolVar(&cfg.ListOnly, "list", false, "List modules and providers without publishing metrics")
+	showVersion := fs.Bool("version", false, "Show version")
+
+	if err := fs.Parse(args); err != nil {
+		return cfg, 1
+	}
 
 	if *showVersion {
 		fmt.Printf("tfwatch %s\n", version)
-		os.Exit(0)
+		return cfg, 0
 	}
 
 	if cfg.Phase != "plan" && cfg.Phase != "apply" {
 		fmt.Fprintln(os.Stderr, "Error: --phase must be 'plan' or 'apply'")
-		flag.Usage()
-		os.Exit(1)
+		fs.Usage()
+		return cfg, 1
 	}
 
-	return cfg
+	return cfg, -1
 }
 
 func initOTEL(ctx context.Context, cfg Config) (func(context.Context) error, error) {
