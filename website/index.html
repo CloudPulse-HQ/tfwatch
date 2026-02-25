@@ -104,8 +104,7 @@
             </div>
             <div class="dashboard-card" style="max-width: 900px; margin: 0 auto;">
                 <div class="dashboard-screenshot">
-                    <!-- Replace with: <img src="assets/screenshots/dashboard.png" alt="tfwatch Dashboard"> -->
-                    Screenshot: tfwatch Dashboard
+                    <img src="assets/images/dashboard.png" alt="tfwatch Dashboard" style="width: 100%; border-radius: 8px;">
                 </div>
                 <div class="dashboard-info">
                     <h3>Terraform Dependency Tracker</h3>
@@ -163,26 +162,9 @@
             <div class="section-header">
                 <h2 class="section-title">What It Looks Like</h2>
             </div>
-            <pre><code>tfwatch v1.0.0 — Terraform Dependency Tracker
-
-Directory:         ./infra/prod
-Phase:             apply
-Backend Type:      s3
-S3 Bucket:         acme-terraform-state
-S3 Key:            prod_vpc_terraform_tfstate
-Terraform Version: 1.9.8
-OTEL Endpoint:     localhost:4317
-
-Found 3 module(s)
-Found 2 provider(s)
-
-  module: vpc v5.1.2
-  module: eks v20.5.0
-  module: rds v6.10.0
-  provider: aws v5.82.2
-  provider: kubernetes v2.35.1
-
-Done. Metrics published to localhost:4317</code></pre>
+            <div style="max-width: 700px; margin: 0 auto;">
+                <img src="assets/images/cli-output.png" alt="tfwatch CLI output" style="width: 100%; border-radius: 8px;">
+            </div>
         </div>
     </section>
 
