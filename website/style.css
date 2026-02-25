@@ -12,8 +12,8 @@
   --color-code-bg: #f1f5f9;
   --color-code-text: #1e293b;
   --color-card-shadow: rgba(0, 0, 0, 0.08);
-  --color-hero-gradient-start: #1e3a5f;
-  --color-hero-gradient-end: #2563eb;
+  --color-hero-gradient-start: #0f1a2e;
+  --color-hero-gradient-end: #162d50;
   --nav-height: 64px;
 }
 
@@ -159,6 +159,12 @@ a:hover {
 .hero-container {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.hero-architecture {
+  max-width: 1600px;
+  margin: 56px auto 0;
+  padding: 0 16px;
 }
 
 .hero-logo {
