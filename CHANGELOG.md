@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.3](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.2...v0.1.3) (2026-02-25)
+
+
+### Bug Fixes
+
+* **website:** use SVG logo matching README across all pages ([497ccb1](https://github.com/CloudPulse-HQ/tfwatch/commit/497ccb11b077dcbbc7151f9e34dc33a6af95f1d1))
+* **website:** use SVG logo matching README across all pages ([fa063e2](https://github.com/CloudPulse-HQ/tfwatch/commit/fa063e21f12e06a6e727f6feefb2ae6ecfb34cb4))
+
 ## [0.1.2](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.1...v0.1.2) (2026-02-25)
 
 
