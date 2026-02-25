@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="tfwatch" width="400">
+  <img src="website/assets/images/logo.svg" alt="tfwatch" width="400">
 </p>
 
 <p align="center">
@@ -23,6 +23,10 @@
 </p>
 
 > **Note:** This project was built with [Claude Code](https://claude.ai/code) as an experiment in AI-assisted development.
+
+<p align="center">
+  <img src="website/assets/images/architecture.svg" alt="tfwatch architecture — Terraform repos → tfwatch → OpenTelemetry → Observability Platforms" width="100%">
+</p>
 
 ---
 
@@ -53,7 +57,7 @@ One query. Instant answers. Across every repo, every workspace, every environmen
 ## How It Works
 
 <p align="center">
-  <img src="assets/flow.svg" alt="tfwatch flow diagram" width="800">
+  <img src="website/assets/images/flow.svg" alt="tfwatch flow diagram" width="800">
 </p>
 
 ```
@@ -90,7 +94,7 @@ tfwatch ships with a Grafana dashboard, auto-provisioned when you start the loca
 - **Module Versions** — Focused table for comparing module versions across repos
 - **Filter bar** — Filter by Terraform version, backend type, org, workspace, phase, and dependency type
 
-![Dashboard](assets/dashboard.png)
+![Dashboard](website/assets/images/dashboard.png)
 
 ## Quick Start
 
