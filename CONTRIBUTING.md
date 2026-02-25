@@ -59,6 +59,19 @@ View metrics at [http://localhost:3000](http://localhost:3000) (Grafana) or [htt
 - Keep changes focused — one feature or fix per PR
 - Add tests for new functionality
 
+## AI-assisted development
+
+This project includes structured AI agent personas for consistent assistance. See [`AGENTS.md`](AGENTS.md) for the full guide.
+
+**Quick start:**
+- Agent persona definitions live in `prompts/agents/`
+- Project context is in `prompts/CONTEXT.md`
+- AI safety guardrails are in `prompts/GUARDRAILS.md`
+- Claude Code users get slash commands (`/dev`, `/fix`, `/docs`, etc.) automatically
+- For other tools (Cursor, Copilot, Windsurf, Aider), see `AGENTS.md` for setup instructions
+
+**Key rule:** AI-generated code must pass the same quality gates as human code — `make lint`, `make test` (80%+ coverage), `make build`.
+
 ## Reporting issues
 
 Open an issue on GitHub with:
