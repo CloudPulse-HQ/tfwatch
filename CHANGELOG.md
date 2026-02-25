@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.2](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.1...v0.1.2) (2026-02-25)
+
+
+### Bug Fixes
+
+* **website:** replace placeholder text with actual dashboard and CLI … ([c4c51f9](https://github.com/CloudPulse-HQ/tfwatch/commit/c4c51f95395cfb15eabbb8136462c1281a7bcc50))
+* **website:** replace placeholder text with actual dashboard and CLI images ([f789bee](https://github.com/CloudPulse-HQ/tfwatch/commit/f789beed23a364b95f31827364dee4c920314fd5))
+
 ## [0.1.1](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.0...v0.1.1) (2026-02-25)
 
 
