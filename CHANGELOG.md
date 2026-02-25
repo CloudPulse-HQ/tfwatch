@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.2.0](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.3...v0.2.0) (2026-02-25)
+
+
+### Features
+
+* add AI agent persona system with guardrails and architecture di… ([e87ecb7](https://github.com/CloudPulse-HQ/tfwatch/commit/e87ecb747d9d466702021a3bb27c03d01e09304d))
+* add AI agent persona system with guardrails and architecture diagram ([4bf3ad0](https://github.com/CloudPulse-HQ/tfwatch/commit/4bf3ad0193d9323d4fc2d70094158083a86b6c50))
+
 ## [0.1.3](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.2...v0.1.3) (2026-02-25)
 
 
