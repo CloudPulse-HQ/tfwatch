@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.1](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.0...v0.1.1) (2026-02-25)
+
+
+### Bug Fixes
+
+* add base href and favicon for GitHub Pages subdirectory ([cd0fb4a](https://github.com/CloudPulse-HQ/tfwatch/commit/cd0fb4a7b770ba2851f01ace8a194b530f73bfdb))
+* add base href and favicon for GitHub Pages subdirectory ([45f19e0](https://github.com/CloudPulse-HQ/tfwatch/commit/45f19e0d08d0ef66b66f99ddd7a3efed4cb35ad6))
+
 ## [0.1.0](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.0.1...v0.1.0) (2026-02-24)
 
 
