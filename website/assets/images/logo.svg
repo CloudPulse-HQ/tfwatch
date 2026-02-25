@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="800" height="240">
+  <defs>
+    <linearGradient id="towerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A90C4"/>
+      <stop offset="100%" stop-color="#2C5F8A"/>
+    </linearGradient>
+    <linearGradient id="circleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#2C5F8A"/>
+    </linearGradient>
+    <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#2C5F8A"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8BADC4"/>
+      <stop offset="100%" stop-color="#6B8DA8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle -->
+  <circle cx="120" cy="120" r="100" fill="none" stroke="url(#circleGrad)" stroke-width="8"/>
+
+  <!-- Tower body - trapezoidal shape -->
+  <path d="M105 78 L95 185 L145 185 L135 78 Z" fill="url(#towerGrad)" opacity="0.85"/>
+
+  <!-- Tower center stripe (window) -->
+  <path d="M113 78 L106 185 L134 185 L127 78 Z" fill="#6BADD6" opacity="0.5"/>
+
+  <!-- Tower cross beams -->
+  <line x1="100" y1="115" x2="140" y2="115" stroke="#1E3A5F" stroke-width="2.5" opacity="0.6"/>
+  <line x1="97" y1="145" x2="143" y2="145" stroke="#1E3A5F" stroke-width="2.5" opacity="0.6"/>
+  <!-- Diagonal beams -->
+  <line x1="102" y1="115" x2="140" y2="145" stroke="#1E3A5F" stroke-width="1.8" opacity="0.4"/>
+  <line x1="138" y1="115" x2="100" y2="145" stroke="#1E3A5F" stroke-width="1.8" opacity="0.4"/>
+
+  <!-- Tower roof/top -->
+  <polygon points="120,50 100,78 140,78" fill="url(#roofGrad)"/>
+  <!-- Roof highlight -->
+  <polygon points="120,50 120,78 140,78" fill="#3A7CB8" opacity="0.3"/>
+
+  <!-- Signal waves - left side -->
+  <path d="M82 85 Q70 100 82 115" fill="none" stroke="#4A9BD9" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M70 78 Q54 100 70 122" fill="none" stroke="#4A9BD9" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M58 72 Q38 100 58 128" fill="none" stroke="#4A9BD9" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Signal waves - right side -->
+  <path d="M158 85 Q170 100 158 115" fill="none" stroke="#4A9BD9" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M170 78 Q186 100 170 122" fill="none" stroke="#4A9BD9" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M182 72 Q202 100 182 128" fill="none" stroke="#4A9BD9" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Magnifying glass -->
+  <!-- Glass circle -->
+  <circle cx="130" cy="140" r="22" fill="none" stroke="url(#glassGrad)" stroke-width="5"/>
+  <circle cx="130" cy="140" r="22" fill="#D6E8F4" opacity="0.25"/>
+  <!-- Glass highlight -->
+  <ellipse cx="124" cy="134" rx="8" ry="6" fill="white" opacity="0.2"/>
+  <!-- Glass handle -->
+  <line x1="147" y1="157" x2="165" y2="178" stroke="url(#glassGrad)" stroke-width="6" stroke-linecap="round"/>
+  <!-- Glass center dot -->
+  <circle cx="130" cy="140" r="5" fill="#4A9BD9" opacity="0.5"/>
+
+  <!-- Text: "tf" in dark blue -->
+  <text x="260" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="80" font-weight="700" fill="#1E3A5F" letter-spacing="-2">tf</text>
+
+  <!-- Text: "watch" in lighter blue -->
+  <text x="348" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="80" font-weight="400" fill="#4A9BD9" letter-spacing="-2">watch</text>
+</svg>
