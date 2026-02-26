@@ -12,8 +12,13 @@
   --color-code-bg: #f1f5f9;
   --color-code-text: #1e293b;
   --color-card-shadow: rgba(0, 0, 0, 0.08);
-  --color-hero-gradient-start: #0f1a2e;
-  --color-hero-gradient-end: #162d50;
+  --color-hero-gradient-start: #f0f4f8;
+  --color-hero-gradient-end: #e2eaf4;
+  --color-hero-text: #1e293b;
+  --color-hero-text-secondary: #475569;
+  --color-hero-badge-bg: rgba(30, 58, 95, 0.08);
+  --color-hero-badge-border: rgba(30, 58, 95, 0.15);
+  --color-hero-badge-text: #334155;
   --nav-height: 64px;
 }
 
@@ -32,6 +37,11 @@
   --color-card-shadow: rgba(0, 0, 0, 0.3);
   --color-hero-gradient-start: #0d1117;
   --color-hero-gradient-end: #1a3352;
+  --color-hero-text: #ffffff;
+  --color-hero-text-secondary: rgba(255, 255, 255, 0.85);
+  --color-hero-badge-bg: rgba(255, 255, 255, 0.1);
+  --color-hero-badge-border: rgba(255, 255, 255, 0.2);
+  --color-hero-badge-text: #ffffff;
 }
 
 * {
@@ -151,7 +161,7 @@ a:hover {
 /* Hero */
 .hero {
   background: linear-gradient(135deg, var(--color-hero-gradient-start), var(--color-hero-gradient-end));
-  color: white;
+  color: var(--color-hero-text);
   padding: 80px 24px;
   text-align: center;
 }
@@ -164,7 +174,10 @@ a:hover {
 .hero-architecture {
   max-width: 1600px;
   margin: 56px auto 0;
-  padding: 0 16px;
+  padding: 24px;
+  background: linear-gradient(135deg, #0d1117, #1a2a42);
+  border-radius: 16px;
+  border: 1px solid rgba(74, 155, 217, 0.15);
 }
 
 .hero-logo {
@@ -181,6 +194,13 @@ a:hover {
 }
 
 .hero-gradient {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .hero-gradient {
   background: linear-gradient(135deg, #60a5fa, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -189,7 +209,7 @@ a:hover {
 
 .hero-subtitle {
   font-size: 20px;
-  opacity: 0.9;
+  color: var(--color-hero-text-secondary);
   max-width: 600px;
   margin: 0 auto 32px;
   line-height: 1.5;
@@ -204,17 +224,17 @@ a:hover {
 }
 
 .hero-badge {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: var(--color-hero-badge-bg);
+  color: var(--color-hero-badge-text);
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-hero-badge-border);
 }
 
 .hero-badge:hover {
-  background: rgba(255, 255, 255, 0.25);
+  opacity: 0.8;
   text-decoration: none;
 }
 
@@ -242,29 +262,29 @@ a:hover {
 }
 
 .btn-primary {
-  background: white;
-  color: var(--color-hero-gradient-end);
+  background: var(--color-primary);
+  color: white;
 }
 
 .btn-primary:hover {
-  background: #f0f0f0;
+  background: var(--color-primary-dark);
 }
 
 .btn-outline {
   background: transparent;
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: var(--color-hero-text);
+  border: 2px solid var(--color-hero-badge-border);
 }
 
 .btn-outline:hover {
-  border-color: white;
-  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-hero-text);
+  background: var(--color-hero-badge-bg);
 }
 
 /* Command box */
 .command-box {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 14px 20px;
   display: flex;
@@ -280,20 +300,20 @@ a:hover {
 .command-box code {
   font-family: "SF Mono", "Fira Code", monospace;
   font-size: 14px;
-  color: #e2e8f0;
+  color: var(--color-code-text);
 }
 
 .copy-btn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-secondary);
   cursor: pointer;
   padding: 4px;
   font-size: 16px;
 }
 
 .copy-btn:hover {
-  color: white;
+  color: var(--color-text);
 }
 
 /* Sections */
