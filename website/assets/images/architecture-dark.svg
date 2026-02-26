@@ -52,7 +52,7 @@
     .mono { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace; }
   </style>
 
-  <!-- Dark background so SVG looks good on any page background (GitHub README, website, etc.) -->
+  <!-- Dark background baked in for standalone rendering (GitHub README, etc.) -->
   <rect width="1440" height="440" rx="16" fill="#0d1117"/>
 
   <!-- ============================================ -->

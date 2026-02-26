@@ -25,7 +25,11 @@
 > **Note:** This project was built with [Claude Code](https://claude.ai/code) as an experiment in AI-assisted development.
 
 <p align="center">
-  <img src="website/assets/images/architecture.svg" alt="tfwatch architecture — Terraform repos → tfwatch → OpenTelemetry → Observability Platforms" width="100%">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="website/assets/images/architecture-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="website/assets/images/architecture-light.svg">
+    <img src="website/assets/images/architecture-light.svg" alt="tfwatch architecture — Terraform repos → tfwatch → OpenTelemetry → Observability Platforms" width="100%">
+  </picture>
 </p>
 
 ---
