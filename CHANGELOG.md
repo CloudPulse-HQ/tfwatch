@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.2.0...v0.3.0) (2026-02-26)
+
+
+### Features
+
+* **website:** add theme-aware architecture diagrams for light and dark modes ([3b48dc9](https://github.com/CloudPulse-HQ/tfwatch/commit/3b48dc9321dc1f725ee056ec5eb37df6efc57879))
+* **website:** redesign architecture diagram with official brand logo… ([162559e](https://github.com/CloudPulse-HQ/tfwatch/commit/162559e6a69948a1ad6f7585df129c978e73d94c))
+* **website:** redesign architecture diagram with official brand logos and theme-adaptive hero ([40b5056](https://github.com/CloudPulse-HQ/tfwatch/commit/40b505600d441c3af822508d5b492c0bc114ec64))
+
+
+### Bug Fixes
+
+* **ui:** improve hero contrast in light mode, increase diagram max wi… ([2b3490c](https://github.com/CloudPulse-HQ/tfwatch/commit/2b3490c5ea6a0e9f23a32715a853568d4328c2ea))
+* **ui:** improve hero contrast in light mode, increase diagram max width to 1600px, replace Terraform icons with official logo (with fade) ([5551aee](https://github.com/CloudPulse-HQ/tfwatch/commit/5551aeeb93ef23c6c0b887ba3569943cef12d1f0))
+* **ui:** improve hero contrast in light mode, increase diagram max width to 1600px, replace Terraform icons with official logo (with fade) ([4ca7bca](https://github.com/CloudPulse-HQ/tfwatch/commit/4ca7bcafb06fe1fd769d3c9644b5bcacf367c10a))
+* **ui:** improve hero contrast in light mode, increase diagram max width to 1600px, replace Terraform icons with official logo (with fade) ([be17012](https://github.com/CloudPulse-HQ/tfwatch/commit/be17012f7abff291773e8cf97640b6583789374e))
+* **website:** add dark background to architecture SVG and boost element brightness ([130eaa3](https://github.com/CloudPulse-HQ/tfwatch/commit/130eaa372acd3aff90b149dbf95ddb18f9c7bf31))
+
 ## [0.2.0](https://github.com/CloudPulse-HQ/tfwatch/compare/v0.1.3...v0.2.0) (2026-02-25)
 
 
