@@ -1,4 +1,4 @@
-package main
+package tfwatch
 
 import (
 	"os"
@@ -368,58 +368,5 @@ func TestEnsureInit_AlreadyInitialized(t *testing.T) {
 	p := NewParser(dir)
 	if err := p.EnsureInit(); err != nil {
 		t.Errorf("EnsureInit() should succeed when already initialized, got: %v", err)
-	}
-}
-
-func TestBackendAttrs(t *testing.T) {
-	tests := []struct {
-		name     string
-		backend  *BackendConfig
-		expected map[string]string
-	}{
-		{
-			name: "workspace",
-			backend: &BackendConfig{
-				Type:         "workspace",
-				Organization: "acme-corp",
-				Workspace:    "production",
-			},
-			expected: map[string]string{
-				"backend_type":      "workspace",
-				"backend_org":       "acme-corp",
-				"backend_workspace": "production",
-			},
-		},
-		{
-			name: "s3",
-			backend: &BackendConfig{
-				Type:   "s3",
-				Bucket: "my-state-bucket",
-				Key:    "prod_vpc_terraform.tfstate",
-			},
-			expected: map[string]string{
-				"backend_type":      "s3",
-				"backend_org":       "my-state-bucket",
-				"backend_workspace": "prod_vpc_terraform.tfstate",
-			},
-		},
-		{
-			name: "unknown type",
-			backend: &BackendConfig{
-				Type: "local",
-			},
-			expected: map[string]string{
-				"backend_type":      "local",
-				"backend_org":       "",
-				"backend_workspace": "",
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			attrs := backendAttrs(tt.backend)
-			assertAttrs(t, attrs, tt.expected)
-		})
 	}
 }

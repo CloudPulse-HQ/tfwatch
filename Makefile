@@ -7,7 +7,7 @@ BUILD_DIR=build
 build:
 	@echo "Building $(BINARY_NAME)..."
 	@mkdir -p $(BUILD_DIR)
-	go build -ldflags="-s -w -X main.version=$(VERSION)" -o $(BUILD_DIR)/$(BINARY_NAME) .
+	go build -ldflags="-s -w -X main.version=$(VERSION)" -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/tfwatch
 	@echo "Built $(BUILD_DIR)/$(BINARY_NAME)"
 
 install: build

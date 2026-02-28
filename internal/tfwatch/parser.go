@@ -1,4 +1,4 @@
-package main
+package tfwatch
 
 import (
 	"encoding/json"
