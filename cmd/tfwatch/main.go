@@ -1,3 +1,17 @@
+// Package main implements the tfwatch CLI, a tool that extracts Terraform
+// dependency metadata (modules, providers, and backend configuration) and
+// publishes it as OpenTelemetry metrics.
+//
+// Usage:
+//
+//	# List detected dependencies
+//	tfwatch --list --dir ./infra
+//
+//	# Publish metrics to an OTEL collector
+//	tfwatch --dir ./infra --otel-endpoint otel.example.com:4317
+//
+//	# Show version
+//	tfwatch --version
 package main
 
 import (
@@ -7,6 +21,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/CloudPulse-HQ/tfwatch/internal/tfwatch"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
@@ -44,7 +59,11 @@ func main() {
 	}
 	defer func() { _ = shutdown(ctx) }()
 
-	collector := NewCollector(cfg)
+	collector := tfwatch.NewCollector(tfwatch.CollectorConfig{
+		Directory:    cfg.Directory,
+		Phase:        cfg.Phase,
+		OTELEndpoint: cfg.OTELEndpoint,
+	})
 	if err := collector.Collect(ctx); err != nil {
 		log.Fatalf("Failed to collect dependencies: %v", err)
 	}
@@ -53,56 +72,7 @@ func main() {
 }
 
 func listDependencies(cfg Config) error {
-	parser := NewParser(cfg.Directory)
-
-	backend, err := parser.ParseBackend()
-	if err != nil {
-		return fmt.Errorf("failed to detect backend: %w", err)
-	}
-
-	fmt.Printf("\nBackend Type:      %s\n", backend.Type)
-	switch backend.Type {
-	case "workspace":
-		fmt.Printf("Organization:      %s\n", backend.Organization)
-		fmt.Printf("Workspace:         %s\n", backend.Workspace)
-	case "s3":
-		fmt.Printf("S3 Bucket:         %s\n", backend.Bucket)
-		fmt.Printf("S3 Key:            %s\n", backend.Key)
-	}
-
-	if err := parser.EnsureInit(); err != nil {
-		return fmt.Errorf("terraform init failed: %w", err)
-	}
-
-	modules, err := parser.ParseModules()
-	if err != nil {
-		return fmt.Errorf("failed to parse modules: %w", err)
-	}
-
-	providers, err := parser.ParseProviders()
-	if err != nil {
-		return fmt.Errorf("failed to parse providers: %w", err)
-	}
-
-	if len(modules) > 0 {
-		fmt.Println("\nModules:")
-		for _, m := range modules {
-			fmt.Printf("  %-30s %s @ %s\n", m.Name, m.Source, m.Version)
-		}
-	}
-
-	if len(providers) > 0 {
-		fmt.Println("\nProviders:")
-		for _, p := range providers {
-			fmt.Printf("  %-30s %s @ %s\n", p.Name, p.Source, p.Version)
-		}
-	}
-
-	if len(modules) == 0 && len(providers) == 0 {
-		fmt.Println("\nNo modules or providers found.")
-	}
-
-	return nil
+	return tfwatch.ListDependencies(cfg.Directory)
 }
 
 func parseFlags() Config {

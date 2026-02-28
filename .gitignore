@@ -1,4 +1,4 @@
-tfwatch
+/tfwatch
 tfwatch-*
 build/
 *.test
