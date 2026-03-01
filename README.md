@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/CloudPulse-HQ/tfwatch/actions/workflows/ci.yml"><img src="https://github.com/CloudPulse-HQ/tfwatch/workflows/CI/badge.svg" alt="CI"></a>
-  <a href="https://github.com/CloudPulse-HQ/tfwatch/actions/workflows/release.yml"><img src="https://github.com/CloudPulse-HQ/tfwatch/workflows/Release/badge.svg" alt="Release"></a>
+  <a href="https://github.com/yashn3yx/tfwatch/actions/workflows/ci.yml"><img src="https://github.com/yashn3yx/tfwatch/workflows/CI/badge.svg" alt="CI"></a>
+  <a href="https://github.com/yashn3yx/tfwatch/actions/workflows/release.yml"><img src="https://github.com/yashn3yx/tfwatch/workflows/Release/badge.svg" alt="Release"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://go.dev/"><img src="https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go&logoColor=white" alt="Go"></a>
   <a href="https://www.terraform.io/"><img src="https://img.shields.io/badge/Terraform-1.0+-844FBA?logo=terraform" alt="Terraform"></a>
   <a href="https://opentelemetry.io/"><img src="https://img.shields.io/badge/OpenTelemetry-metrics-3C5AFF?logo=opentelemetry&logoColor=white" alt="OpenTelemetry"></a>
-  <a href="https://goreportcard.com/report/github.com/CloudPulse-HQ/tfwatch"><img src="https://goreportcard.com/badge/github.com/CloudPulse-HQ/tfwatch" alt="Go Report Card"></a>
-  <a href="https://pkg.go.dev/github.com/CloudPulse-HQ/tfwatch"><img src="https://pkg.go.dev/badge/github.com/CloudPulse-HQ/tfwatch.svg" alt="Go Reference"></a>
+  <a href="https://goreportcard.com/report/github.com/yashn3yx/tfwatch"><img src="https://goreportcard.com/badge/github.com/yashn3yx/tfwatch" alt="Go Report Card"></a>
+  <a href="https://pkg.go.dev/github.com/yashn3yx/tfwatch"><img src="https://pkg.go.dev/badge/github.com/yashn3yx/tfwatch.svg" alt="Go Reference"></a>
   <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/Built%20with-Claude%20Code-CC785C?logo=anthropic&logoColor=white" alt="Built with Claude Code"></a>
 </p>
 
@@ -105,13 +105,13 @@ tfwatch ships with a Grafana dashboard, auto-provisioned when you start the loca
 ### 1. Install
 
 ```bash
-go install github.com/CloudPulse-HQ/tfwatch@latest
+go install github.com/yashn3yx/tfwatch@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://github.com/CloudPulse-HQ/tfwatch.git
+git clone https://github.com/yashn3yx/tfwatch.git
 cd tfwatch
 make build
 ```

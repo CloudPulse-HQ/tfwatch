@@ -78,7 +78,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install tfwatch
-        run: go install github.com/CloudPulse-HQ/tfwatch@latest
+        run: go install github.com/yashn3yx/tfwatch@latest
 
       - name: Publish metrics
         run: tfwatch --dir ./infra --phase apply --otel-endpoint ${{ secrets.OTEL_ENDPOINT }} --otel-insecure=false

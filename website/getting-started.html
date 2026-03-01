@@ -22,7 +22,7 @@
                 <a href="getting-started.html" class="nav-item">Install</a>
                 <a href="docs.html" class="nav-item">Docs</a>
                 <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-                <a href="https://github.com/CloudPulse-HQ/tfwatch" class="nav-item nav-cta">GitHub</a>
+                <a href="https://github.com/yashn3yx/tfwatch" class="nav-item nav-cta">GitHub</a>
             </div>
         </div>
     </nav>
@@ -40,12 +40,12 @@
                     <div class="step-content">
                         <h3>Install tfwatch</h3>
                         <p>Install via Go:</p>
-                        <pre><code>go install github.com/CloudPulse-HQ/tfwatch@latest</code></pre>
+                        <pre><code>go install github.com/yashn3yx/tfwatch@latest</code></pre>
                         <p style="margin-top: 16px;">Or build from source:</p>
-                        <pre><code>git clone https://github.com/CloudPulse-HQ/tfwatch.git
+                        <pre><code>git clone https://github.com/yashn3yx/tfwatch.git
 cd tfwatch
 make build</code></pre>
-                        <p style="margin-top: 16px;">Or download a pre-built binary from <a href="https://github.com/CloudPulse-HQ/tfwatch/releases">GitHub Releases</a>.</p>
+                        <p style="margin-top: 16px;">Or download a pre-built binary from <a href="https://github.com/yashn3yx/tfwatch/releases">GitHub Releases</a>.</p>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ tfwatch --dir ./infra/prod --phase apply</code></pre>
                 <pre><code># GitHub Actions example
 - name: Track dependencies
   run: |
-    go install github.com/CloudPulse-HQ/tfwatch@latest
+    go install github.com/yashn3yx/tfwatch@latest
     tfwatch --dir ./infra --phase apply \
       --otel-endpoint ${{ secrets.OTEL_ENDPOINT }} \
       --otel-insecure=false</code></pre>

@@ -21,7 +21,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/CloudPulse-HQ/tfwatch/internal/tfwatch"
+	"github.com/yashn3yx/tfwatch/internal/tfwatch"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"

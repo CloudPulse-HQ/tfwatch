@@ -1,4 +1,4 @@
-module github.com/CloudPulse-HQ/tfwatch
+module github.com/yashn3yx/tfwatch
 
 go 1.24.0
 

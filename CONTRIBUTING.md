@@ -5,7 +5,7 @@ Thanks for your interest in contributing!
 ## Getting started
 
 ```bash
-git clone https://github.com/CloudPulse-HQ/tfwatch.git
+git clone https://github.com/yashn3yx/tfwatch.git
 cd tfwatch
 make build
 make test

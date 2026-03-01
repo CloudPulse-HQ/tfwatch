@@ -6,7 +6,7 @@ tfwatch is a single-binary, zero-config CLI that reads Terraform lock files and 
 
 ## Architecture
 
-Single Go package (`github.com/CloudPulse-HQ/tfwatch`) with three core files:
+Single Go package (`github.com/yashn3yx/tfwatch`) with three core files:
 
 | File | Responsibility |
 |------|---------------|
